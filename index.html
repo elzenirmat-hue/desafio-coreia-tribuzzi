@@ -58,19 +58,67 @@ button{
 
 <h1>COPA DO MUNDO, CULTURAS E CONTINENTES</h1>
 
+<h2>MATEMÁTICA E HISTÓRIA EM AÇÃO</h2>
+
+<p><strong>Professores Responsáveis</strong></p>
+
+<p>Elzenir Montes & Camila</p>
+
 <h2>🇰🇷 DESAFIO COREIA DO SUL 🇰🇷</h2>
 
 </header>
 
 <div class="container">
 
-<p>Projeto Interdisciplinar 2026</p>
+<p>
+Teste seus conhecimentos sobre a Coreia do Sul.
+</p>
 
-<p>Em breve o quiz será iniciado.</p>
+<p>
+História • Geografia • Cultura • Tecnologia • Copa do Mundo
+</p>
 
-<button>Iniciar Quiz</button>
+<br>
+
+<input
+type="text"
+id="nome"
+placeholder="Digite seu nome e identificação"
+style="width:80%;padding:12px;font-size:16px;">
+
+<br><br>
+
+<button onclick="iniciarQuiz()">
+INICIAR DESAFIO
+</button>
 
 </div>
 
+    <script>
+
+function iniciarQuiz(){
+
+let nome =
+document.getElementById("nome").value;
+
+if(nome==""){
+
+alert("Digite seu nome e identificação.");
+
+return;
+
+}
+
+localStorage.setItem(
+"participante",
+nome
+);
+
+window.location.href =
+"quiz.html";
+
+}
+
+</script>
 </body>
 </html>
