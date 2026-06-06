@@ -110,59 +110,95 @@ const perguntas = [
 
 {
 pergunta:"Qual é a capital da Coreia do Sul?",
-opcoes:[
-"Busan",
-"Incheon",
-"Seul",
-"Daegu"
-],
+opcoes:["Busan","Incheon","Seul","Daegu"],
 correta:2
 },
 
 {
 pergunta:"Em qual continente está localizada a Coreia do Sul?",
-opcoes:[
-"Europa",
-"África",
-"Ásia",
-"Oceania"
-],
+opcoes:["Europa","África","Ásia","Oceania"],
 correta:2
 },
 
 {
 pergunta:"Qual foi a melhor colocação da Coreia do Sul em uma Copa do Mundo?",
-opcoes:[
-"Campeã",
-"Vice-campeã",
-"3º Lugar",
-"4º Lugar"
-],
+opcoes:["Campeã","Vice-campeã","3º Lugar","4º Lugar"],
 correta:3
 },
 
 {
 pergunta:"Em qual Copa do Mundo a Coreia do Sul alcançou sua melhor campanha?",
-opcoes:[
-"1994",
-"1998",
-"2002",
-"2010"
-],
+opcoes:["1994","1998","2002","2010"],
 correta:2
 },
 
 {
 pergunta:"Em sua melhor participação em Copas do Mundo (2002), qual seleção a Coreia do Sul eliminou nas oitavas de final?",
-opcoes:[
-"França",
-"Itália",
-"Brasil",
-"Espanha"
-],
+opcoes:["França","Itália","Brasil","Espanha"],
 correta:1
+},
+
+{
+pergunta:"Em sua melhor participação em Copas do Mundo (2002), qual seleção a Coreia do Sul eliminou nas quartas de final?",
+opcoes:["Alemanha","Inglaterra","Espanha","Portugal"],
+correta:2
+},
+
+{
+pergunta:"Qual empresa sul-coreana é uma das maiores empresas de tecnologia e eletrônicos do mundo?",
+opcoes:["Sony","Samsung","Philips","Lenovo"],
+correta:1
+},
+
+{
+pergunta:"Qual evento esportivo mundial ajudou a projetar a Coreia do Sul para o mundo antes da Copa de 2002?",
+opcoes:["Copa América de 1989","Jogos Olímpicos de Seul (1988)","Jogos Pan-Americanos de 1991","Copa das Confederações de 1997"],
+correta:1
+},
+
+{
+pergunta:"Qual jogador é considerado a maior estrela atual da seleção sul-coreana?",
+opcoes:["Kim Min-jae","Son Heung-min","Lee Kang-in","Hwang Hee-chan"],
+correta:1
+},
+
+{
+pergunta:"Como é chamada a música pop produzida na Coreia do Sul?",
+opcoes:["J-Pop","K-Pop","C-Pop","A-Pop"],
+correta:1
+},
+
+{
+pergunta:"Qual destes pratos é tradicional da culinária sul-coreana?",
+opcoes:["Pizza","Kimchi","Tacos","Lasanha"],
+correta:1
+},
+
+{
+pergunta:"A Coreia do Sul é frequentemente chamada de exemplo de milagre econômico porque:",
+opcoes:["Descobriu grandes reservas de petróleo","Tornou-se uma potência econômica em poucas décadas","Possui a maior população da Ásia","Foi colonizada pelos Estados Unidos"],
+correta:1
+},
+
+{
+pergunta:"Qual cidade é a capital e também o principal centro econômico da Coreia do Sul?",
+opcoes:["Busan","Daegu","Incheon","Seul"],
+correta:3
+},
+
+{
+pergunta:"Qual fator contribuiu para o rápido desenvolvimento econômico da Coreia do Sul após a Guerra da Coreia?",
+opcoes:["Grandes reservas de petróleo","Investimentos em educação, tecnologia e indústria","Produção agrícola em larga escala","Exploração de ouro"],
+correta:1
+},
+
+{
+pergunta:"Qual é o nome da zona que separa a Coreia do Sul da Coreia do Norte?",
+opcoes:["Linha Azul","Zona Internacional","Zona Desmilitarizada (DMZ)","Fronteira Asiática"],
+correta:2
 }
 
+];
 ];
 
 let indice=0;
@@ -190,6 +226,10 @@ document.body.innerHTML = `
 <p>Acertos: ${pontos/10}/${perguntas.length}</p>
 
 <p>Pontuação: ${pontos} pontos</p>
+
+<p>Aproveitamento:
+${Math.round((pontos/(perguntas.length*10))*100)}%
+</p>
 
 <p>Questões incorretas:
 ${erros.length ? erros.join(", ") : "Nenhuma"}
