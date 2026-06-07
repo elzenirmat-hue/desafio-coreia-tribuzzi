@@ -235,18 +235,23 @@ let percentual =
 Math.round((pontos/(perguntas.length*10))*100);
 
 let titulo="";
+let medalha="";
 
 if(percentual>=90){
-titulo="🏆 Embaixador da Coreia do Sul";
+medalha="🏆";
+titulo="Embaixador da Coreia do Sul";
 }
 else if(percentual>=70){
-titulo="🥇 Especialista em Cultura Coreana";
+medalha="🥇";
+titulo="Especialista em Cultura Coreana";
 }
 else if(percentual>=50){
-titulo="🥈 Conhecedor da Coreia";
+medalha="🥈";
+titulo="Conhecedor da Coreia";
 }
 else{
-titulo="📚 Aprendiz da Coreia";
+medalha="📚";
+titulo="Aprendiz da Coreia";
 }
   
 document.body.innerHTML = `
@@ -266,11 +271,24 @@ border-radius:10px;">
 
 
 <h1>🇰🇷 🏆 QUIZ CONCLUÍDO 🇰🇷</h1>
-<p><strong>${localStorage.getItem("participante")}</strong></p>
+
+<p style="
+font-size:12px;
+letter-spacing:2px;
+color:#666;">
+COLÉGIO MILITAR 2 DE JULHO • BANDEIRA TRIBUZZI
+</p>
+
+<p style="font-size:22px;">
+🇰🇷 <strong>${localStorage.getItem("participante")}</strong> 🇰🇷
+</p>
 
 <p>Acertos: ${pontos/10}/${perguntas.length}</p>
 
-<p style="font-size:28px;color:#003478;">
+<p style="
+font-size:38px;
+font-weight:bold;
+color:#003478;">
 🏅 ${pontos} pontos
 </p>
 
@@ -278,8 +296,23 @@ border-radius:10px;">
 ${Math.round((pontos/(perguntas.length*10))*100)}%
 </p>
 
-<p style="font-size:24px;color:#003478;">
-${titulo}
+<p style="
+font-size:24px;
+color:#003478;
+font-weight:bold;">
+${medalha} ${titulo}
+</p>
+
+<p style="
+font-size:18px;
+color:#666;">
+${percentual>=90 ?
+"Excelente desempenho! Você representou a Coreia do Sul com honra." :
+percentual>=70 ?
+"Muito bom! Você domina vários aspectos da cultura coreana." :
+percentual>=50 ?
+"Bom trabalho! Continue explorando a história e cultura da Coreia." :
+"Todo especialista começa aprendendo. Continue estudando!"}
 </p>
 
 
