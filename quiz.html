@@ -118,8 +118,26 @@ text-align:center;">
 
 </div>
 
-<script>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {getFirestore,collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDASrXk-QR65zPVOmwuhUOof6ZRX3VFLy4",
+  authDomain: "desafio-coreia-tribuzzi.firebaseapp.com",
+  projectId: "desafio-coreia-tribuzzi",
+  storageBucket: "desafio-coreia-tribuzzi.firebasestorage.app",
+  messagingSenderId: "925982296824",
+  appId: "1:925982296824:web:349bebf4dc883c8ec1c90d"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+ 
 const perguntas = [
 
 {
@@ -221,15 +239,36 @@ let erros=[];
 let tempo=20;
 let cronometro;
 
+ async function salvarRanking(){
+
+const participante =
+localStorage.getItem("participante") || "Anônimo";
+
+const evento = "coreia-manha";
+
+await addDoc(
+collection(db,"ranking"),
+{
+nome: participante,
+pontos: pontos,
+evento: evento,
+data: new Date()
+}
+);
+
+}
+
 document.getElementById("participante").innerHTML =
 "👤 " + (localStorage.getItem("participante") || "Participante");
   
-function carregarPergunta(){
+async function carregarPergunta(){
 
 if(indice >= perguntas.length){
 
 localStorage.setItem("pontos",pontos);
 localStorage.setItem("erros",JSON.stringify(erros));
+
+ await salvarRanking();
 
 let percentual =
 Math.round((pontos/(perguntas.length*10))*100);
