@@ -223,7 +223,14 @@ let cronometro;
 
 document.getElementById("participante").innerHTML =
 "👤 " + (localStorage.getItem("participante") || "Participante");
+<hr style="
+width:60%;
+margin:15px auto;
+border:0;
+height:2px;
+background:#003478;">
 
+  
 function carregarPergunta(){
 
 if(indice >= perguntas.length){
@@ -231,6 +238,24 @@ if(indice >= perguntas.length){
 localStorage.setItem("pontos",pontos);
 localStorage.setItem("erros",JSON.stringify(erros));
 
+let percentual =
+Math.round((pontos/(perguntas.length*10))*100);
+
+let titulo="";
+
+if(percentual>=90){
+titulo="🏆 Embaixador da Coreia do Sul";
+}
+else if(percentual>=70){
+titulo="🥇 Especialista em Cultura Coreana";
+}
+else if(percentual>=50){
+titulo="🥈 Conhecedor da Coreia";
+}
+else{
+titulo="📚 Aprendiz da Coreia";
+}
+  
 document.body.innerHTML = `
 <div style="max-width:800px;margin:auto;background:white;padding:30px;border-radius:10px;text-align:center;border-top:8px solid #C60C30;border-bottom:8px solid #003478;">
 
@@ -247,23 +272,23 @@ border-radius:10px;">
 </div>
 
 
-<h1>
-🇰🇷 🏆 QUIZ CONCLUÍDO 🇰🇷
-</h1>
-
+<h1>🇰🇷 🏆 QUIZ CONCLUÍDO 🇰🇷</h1>
 <p><strong>${localStorage.getItem("participante")}</strong></p>
 
 <p>Acertos: ${pontos/10}/${perguntas.length}</p>
 
-<p>Pontuação: ${pontos} pontos</p>
+<p style="font-size:28px;color:#003478;">
+🏅 ${pontos} pontos
+</p>
 
 <p>Aproveitamento:
 ${Math.round((pontos/(perguntas.length*10))*100)}%
 </p>
 
-<p style="font-size:20px;color:#003478;">
-🏆 Embaixador da Coreia do Sul
+<p style="font-size:24px;color:#003478;">
+${titulo}
 </p>
+
 
 <p>Total de erros: ${erros.length}</p>
 
@@ -283,8 +308,12 @@ Se isso não fizer você correr, eu não sei o que vai."
 — Emicida
 </p>
 
-<p style="font-size:10px;color:#888;text-align:right;">
-Programa desenvolvido e administrado pelo Profº Elzenir Montes
+<p style="font-size:13px;color:#888;text-align:right;">
+Programa desenvolvido e administrado pelo
+<br>
+<span style="font-size:16px;color:#003478;font-weight:bold;">
+Profº Elzenir Montes
+</span>
 </p>
 
 </div>
