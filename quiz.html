@@ -231,7 +231,10 @@ document.body.innerHTML = `
 ${Math.round((pontos/(perguntas.length*10))*100)}%
 </p>
 
-<p>Questões incorretas:
+<p>Total de erros: ${erros.length}</p>
+
+<p>
+Questões erradas:
 ${erros.length ? erros.join(", ") : "Nenhuma"}
 </p>
 
