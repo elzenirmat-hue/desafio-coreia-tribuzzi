@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ranking Coreia do Sul</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+h1{
+text-align:center;
+color:#003478;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th{
+background:#003478;
+color:white;
+padding:12px;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+font-size:18px;
+}
+
+tr:nth-child(even){
+background:#f7f7f7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏆 RANKING AO VIVO - COREIA DO SUL 🏆</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Posição</th>
+<th>Participante</th>
+<th>Pontos</th>
+</tr>
+</thead>
+
+<tbody id="ranking"></tbody>
+
+</table>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+query,
+where,
+orderBy,
+onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDASrXk-QR65zPVOmwuhUOof6ZRX3VFLy4",
+authDomain: "desafio-coreia-tribuzzi.firebaseapp.com",
+projectId: "desafio-coreia-tribuzzi",
+storageBucket: "desafio-coreia-tribuzzi.firebasestorage.app",
+messagingSenderId: "925982296824",
+appId: "1:925982296824:web:349bebf4dc883c8ec1c90d"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const evento = "coreia-manha";
+
+const q = query(
+collection(db,"ranking"),
+where("evento","==",evento),
+orderBy("pontos","desc")
+);
+
+onSnapshot(q,(snapshot)=>{
+
+let html="";
+
+let posicao=1;
+
+snapshot.forEach((doc)=>{
+
+const d = doc.data();
+
+let medalha="";
+
+if(posicao==1) medalha="🥇";
+else if(posicao==2) medalha="🥈";
+else if(posicao==3) medalha="🥉";
+else medalha=posicao+"º";
+
+html += `
+<tr>
+<td>${medalha}</td>
+<td>${d.nome}</td>
+<td>${d.pontos}</td>
+</tr>
+`;
+
+posicao++;
+
+});
+
+document.getElementById("ranking").innerHTML = html;
+
+});
+
+</script>
+
+</body>
+</html>
